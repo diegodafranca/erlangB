@@ -31,7 +31,7 @@ while(True):
   Ch = int(input("Insert BHC:"))
   AvgCallDuration = float(input("Insert call duration in seconds: "))
   AvgCallDuration = AvgCallDuration/3600
-  p = Ch*AvgCallDuration*1.01
+  p = Ch*AvgCallDuration
   prob = 0.01
   #prob is the probability of a call being rejected given the BHC and average call duration. It needs to be > 0 and <=1.
   print("For the volume of",p,"erlangs there will be",lines(p,prob), "lines needed to attend the level of service para atender essa volumetria")
