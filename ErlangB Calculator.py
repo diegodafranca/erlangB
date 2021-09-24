@@ -1,7 +1,7 @@
 #Erlang B Calculator
 from math import ceil
 
-def probabilidade(p,c):
+def probability(p,c):
   if(p == 0):
     return 0.0
   s= 0.0
@@ -10,16 +10,16 @@ def probabilidade(p,c):
   pc = 1.0/(1.0 + s)
   return pc
 
-def Canais(p,prob):
+def lines(p,prob):
   l,r = 0,ceil(p)
-  fR = probabilidade(p,r)
+  fR = probability(p,r)
   while(fR > prob):
     l = r
     r = r + 32
-    fR = probabilidade(p,r)
+    fR = probability(p,r)
   while(r-l)>1:
     mid = ceil((l+r)/2)
-    fMid = probabilidade(p,mid)
+    fMid = probability(p,mid)
     if fMid > prob:
       l = mid
     else:
@@ -28,15 +28,11 @@ def Canais(p,prob):
 
 
 while(True):
-  Ch = int(input("Insira número de chamadas no HMM:"))
-  TMA = float(input("Insira TMA em segundos: "))
-  TMA = TMA/3600
-  #Canais = int(input("Insira Número de Canais: "))
-  p = Ch*TMA*1.01
+  Ch = int(input("Insert BHC:"))
+  AvgCallDuration = float(input("Insert call duration in seconds: "))
+  AvgCallDuration = AvgCallDuration/3600
+  p = Ch*AvgCallDuration*1.01
   prob = 0.01
-  #prob precisa estar entre 0 e 1
-  print("Para a volumetria de",p,"erlangs serão necessários",Canais(p,prob), "canais para atender essa volumetria")
+  #prob is the probability of a call being rejected given the BHC and average call duration. It needs to be > 0 and <=1.
+  print("For the volume of",p,"erlangs there will be",lines(p,prob), "lines needed to attend the level of service para atender essa volumetria")
   break
-
-  
-
